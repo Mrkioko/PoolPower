@@ -1,87 +1,115 @@
 /* site/style.css */
-/* Super Lean & Eco-Conscious Styling */
+
 
 /* Basic Reset and Body Styles */
 body {
-    font-family: sans-serif; /* Use a common system font for efficiency */
-    line-height: 1.5; /* Slightly tighter line height */
+    font-family: 'Arial', sans-serif; /* Using a common, readable sans-serif font */
+    line-height: 1.6; /* Standard line height for readability */
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0; /* Very light gray */
-    color: #222; /* Dark text for readability */
-    font-size: 16px; /* Base font size */
+    background-color: #e9ecef; /* Slightly darker light gray background for contrast */
+    color: #343a40; /* Darker text for better readability */
+    font-size: 17px; /* Slightly larger base font size */
+    -webkit-font-smoothing: antialiased; /* Improve font rendering */
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Header */
 header {
-    background-color: #4CAF50; /* A standard green, slightly less vibrant */
+    background: linear-gradient to right, #28a745, #218838); /* Green gradient */
     color: white;
-    padding: 15px 20px; /* Reduced padding slightly */
+    padding: 30px 20px; /* Increased padding */
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Lighter shadow */
-    margin-bottom: 25px; /* Reduced margin */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More prominent shadow */
+    margin-bottom: 40px; /* Increased margin below header */
 }
 
 header h1 {
-    margin: 0 0 5px 0; /* Reduced margins */
-    font-size: 1.8em; /* Slightly smaller heading */
-    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2.5em; /* Larger heading */
+    font-weight: 700; /* Bolder font */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle text shadow */
 }
 
 header p {
-    margin: 0;
-    font-size: 1em;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    opacity: 0.9; /* Slightly transparent */
 }
 
 header a {
-    color: white;
+    color: #c3e6cb; /* Lighter green for links */
     text-decoration: underline;
+    font-weight: 600;
 }
 
 header a:hover {
     text-decoration: none;
+    color: #d4edda; /* Even lighter on hover */
 }
+
 
 /* Main Content Area */
 main {
-    max-width: 800px; /* Slightly reduced max width */
-    margin: 15px auto; /* Reduced vertical margin */
-    padding: 0 15px; /* Reduced horizontal padding */
+    max-width: 960px; /* Wider content area */
+    margin: 20px auto; /* Centered with vertical margin */
+    padding: 0 25px; /* Increased horizontal padding */
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px; /* Reduced margin */
-    font-size: 1.5em; /* Reduced heading size */
-    font-weight: 600;
-    color: #444;
+    margin-bottom: 30px; /* Increased margin */
+    font-size: 2em; /* Larger heading */
+    font-weight: 700;
+    color: #495057; /* Dark gray heading color */
+    position: relative; /* For underline effect */
 }
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; /* Short underline */
+    height: 3px;
+    background-color: #28a745; /* Green underline */
+    margin: 10px auto 0; /* Center underline */
+    border-radius: 2px;
+}
+
 
 /* Deals List Grid */
 #deals-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly smaller min width for more columns on larger screens */
-    gap: 15px; /* Reduced gap */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Larger min width for deal items */
+    gap: 25px; /* Increased gap */
 }
 
 /* Individual Deal Item */
 .deal-item {
-    background: #fff; /* White background */
-    padding: 15px; /* Reduced padding */
-    border-radius: 5px; /* Slightly less rounded corners */
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* Lighter shadow */
+    background: #ffffff; /* White background */
+    padding: 20px; /* Standard padding */
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* More prominent shadow */
     display: flex;
     flex-direction: column; /* Stack vertically by default */
     align-items: center;
     text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover transition */
+    border: 1px solid #dee2e6; /* Subtle border */
+}
+
+.deal-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Larger shadow on hover */
 }
 
 .deal-item img {
-    width: 100px; /* Reduced image size */
-    height: 100px; /* Reduced image size */
+    width: 150px; /* Larger image size */
+    height: 150px; /* Larger image size */
     object-fit: cover;
-    border-radius: 4px; /* Slightly less rounded image corners */
-    margin-bottom: 10px; /* Reduced margin */
+    border-radius: 8px; /* Rounded image corners */
+    margin-bottom: 15px; /* Space below image */
+    border: 1px solid #ced4da; /* Image border */
 }
 
 .deal-item .deal-details {
@@ -91,49 +119,60 @@ h2 {
 }
 
 .deal-item h3 {
-    margin: 0 0 5px 0; /* Reduced margins */
-    font-size: 1.2em; /* Reduced heading size */
-    color: #111;
+    margin: 0 0 8px 0; /* Standard margins */
+    font-size: 1.4em; /* Larger heading size */
+    color: #212529; /* Dark heading color */
+    font-weight: 600;
 }
 
 .deal-item p {
-    margin: 0 0 5px 0; /* Reduced margins */
-    color: #555;
-    font-size: 0.9em; /* Slightly smaller text */
+    margin: 0 0 8px 0; /* Standard margins */
+    color: #495057; /* Standard text color */
+    font-size: 1em; /* Standard text size */
 }
 
 .deal-item strong {
     font-weight: bold;
+    color: #000; /* Make strong text black */
 }
 
 /* Button Styling */
 .initiate-pool-btn {
     display: inline-block;
-    margin-top: 10px; /* Reduced margin */
-    padding: 8px 15px; /* Reduced padding */
-    background-color: #4CAF50; /* Standard green */
+    margin-top: 15px; /* Standard margin */
+    padding: 12px 25px; /* Larger padding */
+    background-color: #28a745; /* Standard green */
     color: white;
     text-decoration: none;
-    border-radius: 4px; /* Slightly less rounded corners */
-    font-size: 0.9em; /* Reduced font size */
+    border-radius: 5px; /* Standard rounded corners */
+    font-size: 1.1em; /* Larger font size */
     font-weight: bold;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease; /* Faster transition */
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth hover transition */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Button shadow */
 }
 
 .initiate-pool-btn:hover {
-    background-color: #388E3C; /* Slightly darker green on hover */
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Larger shadow on hover */
 }
+
+.initiate-pool-btn:active {
+    transform: translateY(0); /* Press effect */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Smaller shadow when pressed */
+}
+
 
 /* Footer */
 footer {
-    background-color: #333; /* Dark gray */
-    color: #ccc; /* Lighter text */
+    background-color: #343a40; /* Dark gray */
+    color: #adb5bd; /* Lighter text */
     text-align: center;
-    padding: 15px; /* Reduced padding */
-    margin-top: 25px; /* Reduced margin */
-    font-size: 0.8em; /* Smaller font size */
+    padding: 20px; /* Standard padding */
+    margin-top: 40px; /* Increased margin */
+    font-size: 0.9em; /* Standard font size */
 }
 
 /* Responsive adjustments for larger screens */
@@ -146,7 +185,7 @@ footer {
 
     .deal-item img {
         margin-bottom: 0;
-        margin-right: 15px; /* Reduced margin */
+        margin-right: 20px; /* Standard margin */
     }
 
      .deal-item .deal-details {
