@@ -1,7 +1,7 @@
 # Ignore Google API Key file
 # Replace 'your-project-name-etc.json' with the actual name of your key file
 poolpower_scripts/poolpower-fd17d74bd0d0.json
-
+poolpower-fd17d74bd0d0.json
 # Ignore Python cache files
 __pycache__/
 *.pyc
