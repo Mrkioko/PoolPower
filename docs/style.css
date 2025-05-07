@@ -1,87 +1,125 @@
 /* site/style.css */
-/* Super Lean & Eco-Conscious Styling */
+/* Room-Like and Value-Shouting Styling */
 
 /* Basic Reset and Body Styles */
 body {
-    font-family: sans-serif; /* Use a common system font for efficiency */
-    line-height: 1.5; /* Slightly tighter line height */
+    font-family: 'Arial', sans-serif; /* Using a common, readable sans-serif font */
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0; /* Very light gray */
-    color: #222; /* Dark text for readability */
-    font-size: 16px; /* Base font size */
+    background-color: #f8f9fa; /* Very light background, almost white */
+    color: #343a40; /* Dark text */
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Header */
+/* Header - Make it feel like an entrance or welcome area */
 header {
-    background-color: #4CAF50; /* A standard green, slightly less vibrant */
+    background: linear-gradient(to right, #38a169, #2f855a); /* A richer green gradient */
     color: white;
-    padding: 15px 20px; /* Reduced padding slightly */
+    padding: 40px 20px; /* More padding */
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Lighter shadow */
-    margin-bottom: 25px; /* Reduced margin */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25); /* Stronger shadow */
+    margin-bottom: 50px; /* More space below header */
 }
 
 header h1 {
-    margin: 0 0 5px 0; /* Reduced margins */
-    font-size: 1.8em; /* Slightly smaller heading */
-    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 15px; /* Increased margin below main heading */
+    font-size: 3em; /* Much larger heading */
+    font-weight: 800; /* Extra bold */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* More prominent text shadow */
+    color: #ffffff; /* Ensure heading is pure white */
 }
 
+/* Value Proposition Tagline */
 header p {
-    margin: 0;
-    font-size: 1em;
+    font-size: 1.5em; /* Larger tagline */
+    margin: 0 auto 20px auto; /* Center and add space below */
+    max-width: 700px; /* Limit width for readability */
+    font-weight: 600; /* Bolder tagline */
+    color: #e2e6ea; /* Slightly off-white for contrast */
 }
 
 header a {
-    color: white;
+    color: #c3e6cb;
     text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.1em; /* Slightly larger link */
 }
 
 header a:hover {
     text-decoration: none;
+    color: #d4edda;
 }
 
-/* Main Content Area */
+
+/* Main Content Area - This will feel like the "room" */
 main {
-    max-width: 800px; /* Slightly reduced max width */
-    margin: 15px auto; /* Reduced vertical margin */
-    padding: 0 15px; /* Reduced horizontal padding */
+    max-width: 1000px; /* Wider content area */
+    margin: 20px auto;
+    padding: 20px 25px; /* Padding inside the "room" */
+    background-color: #ffffff; /* White background for the room */
+    border-radius: 12px; /* Rounded corners for the room */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15); /* Shadow for the room effect */
+    border: 1px solid #dee2e6; /* Subtle border for the room */
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 20px; /* Reduced margin */
-    font-size: 1.5em; /* Reduced heading size */
-    font-weight: 600;
-    color: #444;
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 30px;
+    font-size: 2.2em; /* Larger heading */
+    font-weight: 700;
+    color: #495057;
+    position: relative;
 }
 
-/* Deals List Grid */
+h2::after {
+    content: '';
+    display: block;
+    width: 80px; /* Wider underline */
+    height: 4px; /* Thicker underline */
+    background-color: #38a169; /* Matching green */
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+
+/* Deals List Grid - Items within the "room" */
 #deals-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly smaller min width for more columns on larger screens */
-    gap: 15px; /* Reduced gap */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Even larger min width */
+    gap: 30px; /* Increased gap */
 }
 
-/* Individual Deal Item */
+/* Individual Deal Item - Feel like objects/sections in the room */
 .deal-item {
-    background: #fff; /* White background */
-    padding: 15px; /* Reduced padding */
-    border-radius: 5px; /* Slightly less rounded corners */
-    box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* Lighter shadow */
+    background: #f8f9fa; /* Very light background for items */
+    padding: 25px; /* More padding */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1); /* Lighter shadow than the room */
     display: flex;
-    flex-direction: column; /* Stack vertically by default */
+    flex-direction: column;
     align-items: center;
     text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 1px solid #e9ecef; /* Subtle border */
+}
+
+.deal-item:hover {
+    transform: translateY(-8px); /* More pronounced lift effect */
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2); /* Larger shadow on hover */
 }
 
 .deal-item img {
-    width: 100px; /* Reduced image size */
-    height: 100px; /* Reduced image size */
+    width: 180px; /* Larger image size */
+    height: 180px; /* Larger image size */
     object-fit: cover;
-    border-radius: 4px; /* Slightly less rounded image corners */
-    margin-bottom: 10px; /* Reduced margin */
+    border-radius: 6px; /* Rounded image corners */
+    margin-bottom: 20px; /* More space below image */
+    border: 1px solid #ced4da;
 }
 
 .deal-item .deal-details {
@@ -91,69 +129,76 @@ h2 {
 }
 
 .deal-item h3 {
-    margin: 0 0 5px 0; /* Reduced margins */
-    font-size: 1.2em; /* Reduced heading size */
-    color: #111;
+    margin: 0 0 10px 0;
+    font-size: 1.5em; /* Larger heading size */
+    color: #212529;
+    font-weight: 600;
 }
 
 .deal-item p {
-    margin: 0 0 5px 0; /* Reduced margins */
-    color: #555;
-    font-size: 0.9em; /* Slightly smaller text */
+    margin: 0 0 10px 0;
+    color: #495057;
+    font-size: 1em;
 }
 
 .deal-item strong {
     font-weight: bold;
+    color: #000;
 }
 
-/* Button Styling */
+/* Button Styling - Prominent Call to Action */
 .initiate-pool-btn {
     display: inline-block;
-    margin-top: 10px; /* Reduced margin */
-    padding: 8px 15px; /* Reduced padding */
-    background-color: #4CAF50; /* Standard green */
-    color: white;
+    margin-top: 20px; /* More space above button */
+    padding: 15px 30px; /* Larger padding */
+    background-color: #ffc107; /* A bright yellow/amber - stands out! */
+    color: #343a40; /* Dark text for contrast */
     text-decoration: none;
-    border-radius: 4px; /* Slightly less rounded corners */
-    font-size: 0.9em; /* Reduced font size */
+    border-radius: 5px;
+    font-size: 1.2em; /* Larger font size */
     font-weight: bold;
     border: none;
     cursor: pointer;
-    transition: background-color 0.2s ease; /* Faster transition */
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Button shadow */
 }
 
 .initiate-pool-btn:hover {
-    background-color: #388E3C; /* Slightly darker green on hover */
+    background-color: #e0a800; /* Darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Larger shadow */
 }
+
+.initiate-pool-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 
 /* Footer */
 footer {
-    background-color: #333; /* Dark gray */
-    color: #ccc; /* Lighter text */
+    background-color: #343a40;
+    color: #adb5bd;
     text-align: center;
-    padding: 15px; /* Reduced padding */
-    margin-top: 25px; /* Reduced margin */
-    font-size: 0.8em; /* Smaller font size */
+    padding: 25px; /* More padding */
+    margin-top: 50px; /* More margin */
+    font-size: 1em; /* Slightly larger font */
 }
 
 /* Responsive adjustments for larger screens */
 @media (min-width: 768px) {
     .deal-item {
-        flex-direction: row; /* Row layout */
-        text-align: left; /* Left align text */
-        align-items: flex-start; /* Align items to top */
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
     }
 
     .deal-item img {
         margin-bottom: 0;
-        margin-right: 15px; /* Reduced margin */
+        margin-right: 25px; /* More margin */
     }
 
      .deal-item .deal-details {
         text-align: left;
-    }
-
-    .initiate-pool-btn {
-        display: inline-block;
     }
 }
