@@ -1,9 +1,198 @@
-/* docs/style.css */
-body { font-family: sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; }
-header { text-align: center; margin-bottom: 30px; }
-main { max-width: 800px; margin: auto; }
-.deal-item { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-.deal-item h3 { margin-top: 0; color: #333; }
-.deal-item img { max-width: 100px; height: auto; float: right; margin-left: 15px; border-radius: 4px; }
-.deal-item .whatsapp-link { display: inline-block; margin-top: 10px; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; }
-.deal-item::after { content: ""; display: table; clear: both; } /* Clear floats */
+/* site/style.css */
+/* Enhanced Styling for a more impactful appearance */
+
+/* Basic Reset and Body Styles */
+body {
+    font-family: 'Arial', sans-serif; /* Using a common, readable sans-serif font */
+    line-height: 1.6; /* Standard line height for readability */
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef; /* Slightly darker light gray background for contrast */
+    color: #343a40; /* Darker text for better readability */
+    font-size: 17px; /* Slightly larger base font size */
+    -webkit-font-smoothing: antialiased; /* Improve font rendering */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+header {
+    background: linear-gradient to right, #28a745, #218838); /* Green gradient */
+    color: white;
+    padding: 30px 20px; /* Increased padding */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More prominent shadow */
+    margin-bottom: 40px; /* Increased margin below header */
+}
+
+header h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2.5em; /* Larger heading */
+    font-weight: 700; /* Bolder font */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle text shadow */
+}
+
+header p {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    opacity: 0.9; /* Slightly transparent */
+}
+
+header a {
+    color: #c3e6cb; /* Lighter green for links */
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+header a:hover {
+    text-decoration: none;
+    color: #d4edda; /* Even lighter on hover */
+}
+
+
+/* Main Content Area */
+main {
+    max-width: 960px; /* Wider content area */
+    margin: 20px auto; /* Centered with vertical margin */
+    padding: 0 25px; /* Increased horizontal padding */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px; /* Increased margin */
+    font-size: 2em; /* Larger heading */
+    font-weight: 700;
+    color: #495057; /* Dark gray heading color */
+    position: relative; /* For underline effect */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; /* Short underline */
+    height: 3px;
+    background-color: #28a745; /* Green underline */
+    margin: 10px auto 0; /* Center underline */
+    border-radius: 2px;
+}
+
+
+/* Deals List Grid */
+#deals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Larger min width for deal items */
+    gap: 25px; /* Increased gap */
+}
+
+/* Individual Deal Item */
+.deal-item {
+    background: #ffffff; /* White background */
+    padding: 20px; /* Standard padding */
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* More prominent shadow */
+    display: flex;
+    flex-direction: column; /* Stack vertically by default */
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth hover transition */
+    border: 1px solid #dee2e6; /* Subtle border */
+}
+
+.deal-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2); /* Larger shadow on hover */
+}
+
+.deal-item img {
+    width: 150px; /* Larger image size */
+    height: 150px; /* Larger image size */
+    object-fit: cover;
+    border-radius: 8px; /* Rounded image corners */
+    margin-bottom: 15px; /* Space below image */
+    border: 1px solid #ced4da; /* Image border */
+}
+
+.deal-item .deal-details {
+    flex-grow: 1;
+    width: 100%;
+    text-align: center;
+}
+
+.deal-item h3 {
+    margin: 0 0 8px 0; /* Standard margins */
+    font-size: 1.4em; /* Larger heading size */
+    color: #212529; /* Dark heading color */
+    font-weight: 600;
+}
+
+.deal-item p {
+    margin: 0 0 8px 0; /* Standard margins */
+    color: #495057; /* Standard text color */
+    font-size: 1em; /* Standard text size */
+}
+
+.deal-item strong {
+    font-weight: bold;
+    color: #000; /* Make strong text black */
+}
+
+/* Button Styling */
+.initiate-pool-btn {
+    display: inline-block;
+    margin-top: 15px; /* Standard margin */
+    padding: 12px 25px; /* Larger padding */
+    background-color: #28a745; /* Standard green */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px; /* Standard rounded corners */
+    font-size: 1.1em; /* Larger font size */
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Smooth hover transition */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Button shadow */
+}
+
+.initiate-pool-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Larger shadow on hover */
+}
+
+.initiate-pool-btn:active {
+    transform: translateY(0); /* Press effect */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Smaller shadow when pressed */
+}
+
+
+/* Footer */
+footer {
+    background-color: #343a40; /* Dark gray */
+    color: #adb5bd; /* Lighter text */
+    text-align: center;
+    padding: 20px; /* Standard padding */
+    margin-top: 40px; /* Increased margin */
+    font-size: 0.9em; /* Standard font size */
+}
+
+/* Responsive adjustments for larger screens */
+@media (min-width: 768px) {
+    .deal-item {
+        flex-direction: row; /* Row layout */
+        text-align: left; /* Left align text */
+        align-items: flex-start; /* Align items to top */
+    }
+
+    .deal-item img {
+        margin-bottom: 0;
+        margin-right: 20px; /* Standard margin */
+    }
+
+     .deal-item .deal-details {
+        text-align: left;
+    }
+
+    .initiate-pool-btn {
+        display: inline-block;
+    }
+}
