@@ -18,22 +18,26 @@ import urllib.parse # For more robust URL encoding
 # GOOGLE_KEY_FILE = os.path.join(os.path.dirname(__file__), 'your-project-name-etc.json')
 
 # *** REPLACE THE LINE BELOW WITH THE CORRECT PATH TO YOUR JSON KEY FILE ***
-# Example path using forward slashes (recommended for Windows compatibility)
-GOOGLE_KEY_FILE = 'C:/Users/User/Documents/GitHub/PoolPower/poolpower_scripts/poolpower-fd17d74bd0d0.json' # <-Do not-- UPDATE THIS LINE
+# Based on your feedback: key file is under the python scripts folder, assuming script is also there.
+# Replace 'your-project-name-etc.json' with the actual filename of your key file.
+GOOGLE_KEY_FILE = os.path.join(os.path.dirname(__file__), 'poolpower_scripts\poolpower-fd17d74bd0d0.json') # <--- UPDATED THIS LINE
 
 # Update with the exact name of your Google Sheet
 # *** REPLACE THE LINE BELOW WITH YOUR SPREADSHEET NAME ***
-SPREADSHEET_NAME = 'POOL POWER OPERATIONS DATA' # <--Do Not- UPDATE THIS LINE
+SPREADSHEET_NAME = 'POOL POWER OPERATIONS DATA' # <--- UPDATED THIS LINE based on your output
 
 # Update with the exact name of your 'Deals' tab in the spreadsheet
-DEALS_SHEET_NAME = 'Deals'
+# *** CHECK YOUR GOOGLE SHEET AND UPDATE THIS LINE IF 'Deals' IS NOT THE EXACT TAB NAME ***
+DEALS_SHEET_NAME = 'Deals' # <--- CHECK AND UPDATE THIS LINE
 
 # *** REPLACE WITH YOUR ACTUAL POOLPOWER WHATSAPP NUMBER (with country code, no +) ***
 # Example: For +254712345678, use '254712345678'
 POOLPOWER_WHATSAPP_NUMBER = '254745771747' # <--- UPDATE THIS LINE
 
 # Folder where your html/css/js templates are and where the output index.html will be saved
-SITE_DIR = 'docs'
+# Based on your feedback: site directory is docs
+SITE_DIR = 'docs' # <--- UPDATED THIS LINE
+
 INDEX_TEMPLATE = os.path.join(SITE_DIR, 'index_template.html')
 OUTPUT_INDEX = os.path.join(SITE_DIR, 'index.html') # The file GitHub Pages/Netlify will serve
 STYLE_CSS = os.path.join(SITE_DIR, 'style.css') # Path to your CSS file
@@ -73,7 +77,7 @@ if gc: # Only proceed if authentication was successful
         print(f"Successfully opened spreadsheet: '{SPREADSHEET_NAME}'")
 
         # Access the 'Deals' worksheet
-        deals_sheet = spreadsheet.worksheet(DEALS_SHEET_NAME)
+        deals_sheet = spreadsheet.worksheet(DEALS_SHEET_NAME) # Using the variable here
         print(f"Accessed '{DEALS_SHEET_NAME}' worksheet.")
 
         # Get all records as a list of dictionaries
@@ -103,6 +107,7 @@ if gc: # Only proceed if authentication was successful
 
                 # Create the HTML snippet for a single deal item using Tailwind classes
                 # Added data attributes to the button for JS to easily access deal info
+                # Removed the comment lines from within the f-string
                 deal_snippet = f"""
             <div class="deal-item bg-white rounded-lg shadow-md p-6 mb-6 flex flex-col md:flex-row items-center">
                 <img src="{image_url}" alt="{item_name}" class="w-32 h-32 object-cover rounded-md mb-4 md:mb-0 md:mr-6" onerror="this.onerror=null; this.src='https://placehold.co/128x128/e5e7eb/1f2937?text=No+Image';">
@@ -111,12 +116,11 @@ if gc: # Only proceed if authentication was successful
                     <p class="text-gray-600 mb-3">{short_description}</p>
                     <p class="text-gray-700 mb-1"><strong>Target Qty:</strong> {target_qty}</p>
                     <p class="text-gray-700 mb-4"><strong>Est. Price:</strong> KSh {est_price}</p>
-                  
                     <button
                         class="initiate-pool-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
                         data-deal-id="{deal_id}"
                         data-item-name="{item_name}"
-                        data-whatsapp-number="{POOLPOWER_WHATSAPP_NUMBER}" 
+                        data-whatsapp-number="{POOLPOWER_WHATSAPP_NUMBER}"
                     >
                         Ask about this Deal / Create Pool
                     </button>
@@ -186,3 +190,4 @@ if gc: # Only proceed if authentication was successful
     except Exception as e:
         print(f"An unexpected error occurred while reading data or generating HTML: {e}")
 
+        print("Please check version control and review the data sources.")
