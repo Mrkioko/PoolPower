@@ -1,33 +1,36 @@
 /* site/style.css */
+/* Super Lean & Eco-Conscious Styling */
 
+/* Basic Reset and Body Styles */
 body {
-    font-family: sans-serif; /* Using a generic sans-serif font */
-    line-height: 1.6;
+    font-family: sans-serif; /* Use a common system font for efficiency */
+    line-height: 1.5; /* Slightly tighter line height */
     margin: 0;
-    padding: 0; /* Remove default body padding */
-    background-color: #f4f4f4; /* Light gray background */
-    color: #333; /* Default text color */
+    padding: 0;
+    background-color: #f0f0f0; /* Very light gray */
+    color: #222; /* Dark text for readability */
+    font-size: 16px; /* Base font size */
 }
 
+/* Header */
 header {
-    background-color: #25D366; /* WhatsApp green */
+    background-color: #4CAF50; /* A standard green, slightly less vibrant */
     color: white;
-    padding: 20px; /* Add padding */
+    padding: 15px 20px; /* Reduced padding slightly */
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow */
-    margin-bottom: 30px; /* Space below header */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Lighter shadow */
+    margin-bottom: 25px; /* Reduced margin */
 }
 
 header h1 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 2em; /* Larger heading */
+    margin: 0 0 5px 0; /* Reduced margins */
+    font-size: 1.8em; /* Slightly smaller heading */
     font-weight: bold;
 }
 
 header p {
-    font-size: 1.1em;
-    margin-bottom: 5px;
+    margin: 0;
+    font-size: 1em;
 }
 
 header a {
@@ -39,115 +42,118 @@ header a:hover {
     text-decoration: none;
 }
 
-
+/* Main Content Area */
 main {
-    max-width: 900px; /* Max width for content */
-    margin: 20px auto; /* Center content and add vertical margin */
-    padding: 0 20px; /* Add horizontal padding on smaller screens */
+    max-width: 800px; /* Slightly reduced max width */
+    margin: 15px auto; /* Reduced vertical margin */
+    padding: 0 15px; /* Reduced horizontal padding */
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.8em;
+    margin-bottom: 20px; /* Reduced margin */
+    font-size: 1.5em; /* Reduced heading size */
     font-weight: 600;
-    color: #555;
+    color: #444;
 }
 
+/* Deals List Grid */
 #deals-list {
-    display: grid; /* Use CSS Grid for layout */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
-    gap: 20px; /* Space between grid items */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Slightly smaller min width for more columns on larger screens */
+    gap: 15px; /* Reduced gap */
 }
 
+/* Individual Deal Item */
 .deal-item {
-    background: #fff; /* White background for each deal */
-    padding: 20px; /* Padding inside the deal box */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* More prominent shadow */
-    display: flex; /* Use flexbox for content inside deal item */
-    flex-direction: column; /* Stack elements vertically by default */
-    align-items: center; /* Center content horizontally */
-    text-align: center; /* Center text */
+    background: #fff; /* White background */
+    padding: 15px; /* Reduced padding */
+    border-radius: 5px; /* Slightly less rounded corners */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1); /* Lighter shadow */
+    display: flex;
+    flex-direction: column; /* Stack vertically by default */
+    align-items: center;
+    text-align: center;
 }
 
 .deal-item img {
-    width: 120px; /* Fixed image width */
-    height: 120px; /* Fixed image height */
-    object-fit: cover; /* Cover the area without distorting aspect ratio */
-    border-radius: 6px; /* Slightly rounded image corners */
-    margin-bottom: 15px; /* Space below image */
+    width: 100px; /* Reduced image size */
+    height: 100px; /* Reduced image size */
+    object-fit: cover;
+    border-radius: 4px; /* Slightly less rounded image corners */
+    margin-bottom: 10px; /* Reduced margin */
 }
 
 .deal-item .deal-details {
-    flex-grow: 1; /* Allow details section to take available space */
-    width: 100%; /* Take full width within flex container */
-    text-align: center; /* Center text within details */
+    flex-grow: 1;
+    width: 100%;
+    text-align: center;
 }
 
 .deal-item h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1.3em;
-    color: #000;
+    margin: 0 0 5px 0; /* Reduced margins */
+    font-size: 1.2em; /* Reduced heading size */
+    color: #111;
 }
 
 .deal-item p {
-    margin-bottom: 8px;
+    margin: 0 0 5px 0; /* Reduced margins */
     color: #555;
-    font-size: 0.95em;
+    font-size: 0.9em; /* Slightly smaller text */
 }
 
 .deal-item strong {
     font-weight: bold;
 }
 
+/* Button Styling */
 .initiate-pool-btn {
-    display: inline-block; /* Make button inline-block */
-    margin-top: 15px; /* Space above button */
-    padding: 12px 20px; /* Button padding */
-    background-color: #25D366; /* WhatsApp green */
+    display: inline-block;
+    margin-top: 10px; /* Reduced margin */
+    padding: 8px 15px; /* Reduced padding */
+    background-color: #4CAF50; /* Standard green */
     color: white;
-    text-decoration: none; /* Remove underline */
-    border-radius: 5px; /* Rounded button corners */
-    font-size: 1em;
+    text-decoration: none;
+    border-radius: 4px; /* Slightly less rounded corners */
+    font-size: 0.9em; /* Reduced font size */
     font-weight: bold;
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Indicate it's clickable */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Faster transition */
 }
 
 .initiate-pool-btn:hover {
-    background-color: #1da851; /* Darker green on hover */
+    background-color: #388E3C; /* Slightly darker green on hover */
 }
 
+/* Footer */
 footer {
-    background-color: #333; /* Dark gray background */
-    color: white;
+    background-color: #333; /* Dark gray */
+    color: #ccc; /* Lighter text */
     text-align: center;
-    padding: 20px;
-    margin-top: 30px; /* Space above footer */
-    font-size: 0.9em;
+    padding: 15px; /* Reduced padding */
+    margin-top: 25px; /* Reduced margin */
+    font-size: 0.8em; /* Smaller font size */
 }
 
-/* Responsive adjustments */
-@media (min-width: 768px) { /* For medium screens and up */
+/* Responsive adjustments for larger screens */
+@media (min-width: 768px) {
     .deal-item {
-        flex-direction: row; /* Arrange items in a row */
-        text-align: left; /* Align text to the left */
-        align-items: flex-start; /* Align items to the top */
+        flex-direction: row; /* Row layout */
+        text-align: left; /* Left align text */
+        align-items: flex-start; /* Align items to top */
     }
 
     .deal-item img {
-        margin-bottom: 0; /* Remove bottom margin */
-        margin-right: 20px; /* Add right margin */
+        margin-bottom: 0;
+        margin-right: 15px; /* Reduced margin */
     }
 
      .deal-item .deal-details {
-        text-align: left; /* Align text to the left */
+        text-align: left;
     }
 
     .initiate-pool-btn {
-        display: inline-block; /* Keep as inline-block */
+        display: inline-block;
     }
 }
