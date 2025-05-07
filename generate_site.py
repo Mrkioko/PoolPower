@@ -7,37 +7,43 @@ import shutil # Helps in copying files
 import urllib.parse # For more robust URL encoding
 
 # --- Configuration ---
+# Get the directory where the currently running script is located
+SCRIPT_DIR = os.path.dirname(__file__)
+# Get the root directory of the Git repository (assuming script is in a subfolder like poolpower_scripts)
+# Adjust the '..' sequence if your script is in a different level of subfolder
+REPO_ROOT = os.path.join(SCRIPT_DIR, '..') # Assuming script is one level down from repo root
+
 # 1. **SECURE THIS FILE!** Do NOT commit your JSON key file to Git.
 #    Add its name to your .gitignore file.
-# 2. Update this path to where you saved your downloaded JSON key file on your computer.
-#    Using os.path.join is good practice. os.path.dirname(__file__) gets the directory
-#    of the current script. Adjust the '..' and file name based on your file structure.
-#    Example: If your key file is one folder up from your script:
-# GOOGLE_KEY_FILE = os.path.join(os.path.dirname(__file__), '..', 'your-project-name-etc.json')
-# Example: If your key file is in the same folder as your script:
-# GOOGLE_KEY_FILE = os.path.join(os.path.dirname(__file__), 'your-project-name-etc.json')
-
-# *** REPLACE THE LINE BELOW WITH THE CORRECT PATH TO YOUR JSON KEY FILE ***
-# Example path using forward slashes (recommended for Windows compatibility)
-GOOGLE_KEY_FILE = 'C:/Users/User/Documents/GitHub/PoolPower/poolpower_scripts/poolpower-fd17d74bd0d0.json' # <-Do not-- UPDATE THIS LINE
+# 2. Update this path to where you saved your downloaded JSON key file relative to the SCRIPT_DIR.
+# *** REPLACE THE LINE BELOW WITH THE CORRECT FILENAME OF YOUR JSON KEY FILE ***
+# Based on your feedback: key file is in the same folder as the script (poolpower_scripts)
+GOOGLE_KEY_FILE = os.path.join(SCRIPT_DIR, 'poolpower-fd17d74bd0d0.json') # <-NNever-- UPDATED THIS LINE
 
 # Update with the exact name of your Google Sheet
 # *** REPLACE THE LINE BELOW WITH YOUR SPREADSHEET NAME ***
-SPREADSHEET_NAME = 'POOL POWER OPERATIONS DATA' # <--Do Not- UPDATE THIS LINE
+SPREADSHEET_NAME = 'POOL POWER OPERATIONS DATA' # <--- UPDATED THIS LINE based on your output
 
 # Update with the exact name of your 'Deals' tab in the spreadsheet
-DEALS_SHEET_NAME = 'Deals'
+# *** CHECK YOUR GOOGLE SHEET AND UPDATE THIS LINE IF 'Deals' IS NOT THE EXACT TAB NAME ***
+DEALS_SHEET_NAME = 'Deals' # <--- CHECK AND UPDATE THIS LINE
 
 # *** REPLACE WITH YOUR ACTUAL POOLPOWER WHATSAPP NUMBER (with country code, no +) ***
 # Example: For +254712345678, use '254712345678'
 POOLPOWER_WHATSAPP_NUMBER = '254745771747' # <--- UPDATE THIS LINE
 
-# Folder where your html/css/js templates are and where the output index.html will be saved
-SITE_DIR = 'docs'
-INDEX_TEMPLATE = os.path.join(SITE_DIR, 'index_template.html')
+# Folder containing your template files (index_template.html, style.css, script.js) relative to the SCRIPT_DIR
+TEMPLATES_DIR = os.path.join(SCRIPT_DIR, 'templates') # <--- Templates folder relative to script
+
+# Folder where the generated static site files will be saved (for GitHub Pages) relative to the REPO_ROOT
+SITE_DIR = os.path.join(REPO_ROOT, 'docs') # <--- Output folder relative to repo root
+
+INDEX_TEMPLATE = os.path.join(TEMPLATES_DIR, 'index_template.html') # <--- Use TEMPLATES_DIR
 OUTPUT_INDEX = os.path.join(SITE_DIR, 'index.html') # The file GitHub Pages/Netlify will serve
-STYLE_CSS = os.path.join(SITE_DIR, 'style.css') # Path to your CSS file
-SCRIPT_JS = os.path.join(SITE_DIR, 'script.js') # Path to your JS file
+STYLE_CSS_SRC = os.path.join(TEMPLATES_DIR, 'style.css') # <--- Source CSS path
+STYLE_CSS_DEST = os.path.join(SITE_DIR, 'style.css') # <--- Destination CSS path
+SCRIPT_JS_SRC = os.path.join(TEMPLATES_DIR, 'script.js') # <--- Source JS path
+SCRIPT_JS_DEST = os.path.join(SITE_DIR, 'script.js') # <--- Destination JS path
 
 
 # --- Authentication ---
@@ -73,7 +79,7 @@ if gc: # Only proceed if authentication was successful
         print(f"Successfully opened spreadsheet: '{SPREADSHEET_NAME}'")
 
         # Access the 'Deals' worksheet
-        deals_sheet = spreadsheet.worksheet(DEALS_SHEET_NAME)
+        deals_sheet = spreadsheet.worksheet(DEALS_SHEET_NAME) # Using the variable here
         print(f"Accessed '{DEALS_SHEET_NAME}' worksheet.")
 
         # Get all records as a list of dictionaries
@@ -101,22 +107,20 @@ if gc: # Only proceed if authentication was successful
                 est_price = deal.get('Est Price Per Item', 'N/A')
                 image_url = deal.get('Image URL', '') # Default to empty string if no URL
 
-                # Create the HTML snippet for a single deal item using Tailwind classes
-                # Added data attributes to the button for JS to easily access deal info
+                # Create the HTML snippet for a single deal item using standard HTML structure and classes for CSS
                 deal_snippet = f"""
-            <div class="deal-item bg-white rounded-lg shadow-md p-6 mb-6 flex flex-col md:flex-row items-center">
-                <img src="{image_url}" alt="{item_name}" class="w-32 h-32 object-cover rounded-md mb-4 md:mb-0 md:mr-6" onerror="this.onerror=null; this.src='https://placehold.co/128x128/e5e7eb/1f2937?text=No+Image';">
-                <div class="flex-grow text-center md:text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{item_name} ({deal_id})</h3>
-                    <p class="text-gray-600 mb-3">{short_description}</p>
-                    <p class="text-gray-700 mb-1"><strong>Target Qty:</strong> {target_qty}</p>
-                    <p class="text-gray-700 mb-4"><strong>Est. Price:</strong> KSh {est_price}</p>
-                  
+            <div class="deal-item">
+                <img src="{image_url}" alt="{item_name}" onerror="this.onerror=null; this.src='https://placehold.co/120x120/cccccc/000000?text=No+Image';">
+                <div class="deal-details"> 
+                    <h3>{item_name} ({deal_id})</h3>
+                    <p>{short_description}</p>
+                    <p><strong>Target Qty:</strong> {target_qty}</p>
+                    <p><strong>Est. Price:</strong> KSh {est_price}</p>
                     <button
-                        class="initiate-pool-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
+                        class="initiate-pool-btn" 
                         data-deal-id="{deal_id}"
                         data-item-name="{item_name}"
-                        data-whatsapp-number="{POOLPOWER_WHATSAPP_NUMBER}" 
+                        data-whatsapp-number="{POOLPOWER_WHATSAPP_NUMBER}"
                     >
                         Ask about this Deal / Create Pool
                     </button>
@@ -129,17 +133,18 @@ if gc: # Only proceed if authentication was successful
             deals_html_output = "\n".join(deals_html_snippets)
 
             # --- Assemble the Final HTML Page ---
-            # Ensure the site directory exists
+            # Ensure the site output directory exists (docs folder)
             if not os.path.exists(SITE_DIR):
                  os.makedirs(SITE_DIR)
                  print(f"Created directory: {SITE_DIR}")
 
-            # Read the HTML template file
+            # Read the HTML template file from the templates folder
             try:
                 with open(INDEX_TEMPLATE, 'r', encoding='utf-8') as f:
                     template_content = f.read()
             except FileNotFoundError:
                  print(f"Error: Index template file not found at {INDEX_TEMPLATE}")
+                 print(f"Please ensure '{INDEX_TEMPLATE}' exists in your templates folder.")
                  exit()
 
             # Replace the placeholder in the template with the generated deals HTML
@@ -148,30 +153,33 @@ if gc: # Only proceed if authentication was successful
             final_html_content = final_html_content.replace('[YourPoolPowerNumber]', POOLPOWER_WHATSAPP_NUMBER)
 
 
-            # Save the final HTML to the output file
+            # Save the final HTML to the output file in the SITE_DIR (docs folder)
             with open(OUTPUT_INDEX, 'w', encoding='utf-8') as f:
                 f.write(final_html_content)
+            print(f"Successfully generated {OUTPUT_INDEX}")
 
-            # --- Copy Static Assets (CSS, JS) ---
-            # Copy CSS and JS files to the output directory (assuming they are in SITE_DIR)
+
+            # --- Copy Static Assets (CSS, JS) from templates to SITE_DIR ---
             try:
-                if os.path.exists(STYLE_CSS):
-                     shutil.copy(STYLE_CSS, os.path.join(SITE_DIR, 'style.css'))
-                     print(f"Copied {STYLE_CSS} to {SITE_DIR}")
+                if os.path.exists(STYLE_CSS_SRC):
+                     shutil.copy(STYLE_CSS_SRC, STYLE_CSS_DEST) # Copy from SRC to DEST
+                     print(f"Copied {STYLE_CSS_SRC} to {STYLE_CSS_DEST}")
                 else:
-                     print(f"Warning: CSS file not found at {STYLE_CSS}")
+                     print(f"Warning: CSS template file not found at {STYLE_CSS_SRC}")
+                     print(f"Please ensure '{STYLE_CSS_SRC}' exists in your templates folder.")
 
-                if os.path.exists(SCRIPT_JS):
-                     shutil.copy(SCRIPT_JS, os.path.join(SITE_DIR, 'script.js'))
-                     print(f"Copied {SCRIPT_JS} to {SITE_DIR}")
+
+                if os.path.exists(SCRIPT_JS_SRC):
+                     shutil.copy(SCRIPT_JS_SRC, SCRIPT_JS_DEST) # Copy from SRC to DEST
+                     print(f"Copied {SCRIPT_JS_SRC} to {SCRIPT_JS_DEST}")
                 else:
-                     print(f"Warning: JS file not found at {SCRIPT_JS}")
+                     print(f"Warning: JS template file not found at {SCRIPT_JS_SRC}")
+                     print(f"Please ensure '{SCRIPT_JS_SRC}' exists in your templates folder.")
+
 
             except Exception as e:
                 print(f"An error occurred while copying static files: {e}")
 
-
-            print(f"Successfully generated static site at {OUTPUT_INDEX}")
 
         else:
             print("No active deals found in the Google Sheet. No site generated.")
