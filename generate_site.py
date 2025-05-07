@@ -18,7 +18,7 @@ REPO_ROOT = os.path.join(SCRIPT_DIR, '..') # Assuming script is one level down f
 # 2. Update this path to where you saved your downloaded JSON key file relative to the SCRIPT_DIR.
 # *** REPLACE THE LINE BELOW WITH THE CORRECT FILENAME OF YOUR JSON KEY FILE ***
 # Based on your feedback: key file is in the same folder as the script (poolpower_scripts)
-GOOGLE_KEY_FILE = os.path.join(SCRIPT_DIR, 'poolpower-fd17d74bd0d0.json') # <--- UPDATED THIS LINE
+GOOGLE_KEY_FILE = os.path.join(SCRIPT_DIR, 'poolpower-fd17d74bd0d0.json') # <-NNever-- UPDATED THIS LINE
 
 # Update with the exact name of your Google Sheet
 # *** REPLACE THE LINE BELOW WITH YOUR SPREADSHEET NAME ***
