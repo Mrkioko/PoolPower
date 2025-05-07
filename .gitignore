@@ -1,0 +1,24 @@
+# Ignore Google API Key file
+# Replace 'your-project-name-etc.json' with the actual name of your key file
+poolpower_scripts/poolpower-fd17d74bd0d0.json
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.ipynb_checkpoints/ # Ignore Jupyter Notebook checkpoints if you use them
+
+# Ignore virtual environment directory (if you use one)
+# venv/
+# .venv/
+
+# Ignore operating system specific files
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Ignore any other files you don't want to commit
+# For example, if you have a local database file (if not using Sheets)
+# poolpower.db
+
+# Ignore the generated site directory itself if it's not intended to be in the repo
+# (However, for GitHub Pages from /docs, you DO want docs/ committed)
+# /docs/
