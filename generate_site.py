@@ -32,10 +32,10 @@ DEALS_SHEET_NAME = 'Deals' # <--- CHECK AND UPDATE THIS LINE
 POOLPOWER_WHATSAPP_NUMBER = '254745771747' # <--- UPDATE THIS LINE
 
 # Folder containing your template files (index_template.html, style.css, script.js) relative to the SCRIPT_DIR
-TEMPLATES_DIR = os.path.join(SCRIPT_DIR, 'templates') # <--- UPDATED: Templates folder relative to script
+TEMPLATES_DIR = os.path.join(SCRIPT_DIR, 'templates') # <--- Templates folder relative to script
 
 # Folder where the generated static site files will be saved (for GitHub Pages) relative to the REPO_ROOT
-SITE_DIR = os.path.join(REPO_ROOT, 'docs') # <--- UPDATED: Output folder relative to repo root
+SITE_DIR = os.path.join(REPO_ROOT, 'docs') # <--- Output folder relative to repo root
 
 INDEX_TEMPLATE = os.path.join(TEMPLATES_DIR, 'index_template.html') # <--- Use TEMPLATES_DIR
 OUTPUT_INDEX = os.path.join(SITE_DIR, 'index.html') # The file GitHub Pages/Netlify will serve
@@ -106,18 +106,17 @@ if gc: # Only proceed if authentication was successful
                 est_price = deal.get('Est Price Per Item', 'N/A')
                 image_url = deal.get('Image URL', '') # Default to empty string if no URL
 
-                # Create the HTML snippet for a single deal item using Tailwind classes
-                # Added data attributes to the button for JS to easily access deal info
+                # Create the HTML snippet for a single deal item using standard HTML structure and classes for CSS
                 deal_snippet = f"""
-            <div class="deal-item bg-white rounded-lg shadow-md p-6 mb-6 flex flex-col md:flex-row items-center">
-                <img src="{image_url}" alt="{item_name}" class="w-32 h-32 object-cover rounded-md mb-4 md:mb-0 md:mr-6" onerror="this.onerror=null; this.src='https://placehold.co/128x128/e5e7eb/1f2937?text=No+Image';">
-                <div class="flex-grow text-center md:text-left">
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">{item_name} ({deal_id})</h3>
-                    <p class="text-gray-600 mb-3">{short_description}</p>
-                    <p class="text-gray-700 mb-1"><strong>Target Qty:</strong> {target_qty}</p>
-                    <p class="text-gray-700 mb-4"><strong>Est. Price:</strong> KSh {est_price}</p>
+            <div class="deal-item">
+                <img src="{image_url}" alt="{item_name}" onerror="this.onerror=null; this.src='https://placehold.co/120x120/cccccc/000000?text=No+Image';">
+                <div class="deal-details"> 
+                    <h3>{item_name} ({deal_id})</h3>
+                    <p>{short_description}</p>
+                    <p><strong>Target Qty:</strong> {target_qty}</p>
+                    <p><strong>Est. Price:</strong> KSh {est_price}</p>
                     <button
-                        class="initiate-pool-btn bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
+                        class="initiate-pool-btn" 
                         data-deal-id="{deal_id}"
                         data-item-name="{item_name}"
                         data-whatsapp-number="{POOLPOWER_WHATSAPP_NUMBER}"

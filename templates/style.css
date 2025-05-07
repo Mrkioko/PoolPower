@@ -1,9 +1,153 @@
 /* site/style.css */
-body { font-family: sans-serif; line-height: 1.6; margin: 0; padding: 20px; background-color: #f4f4f4; }
-header { text-align: center; margin-bottom: 30px; }
-main { max-width: 800px; margin: auto; }
-.deal-item { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-.deal-item h3 { margin-top: 0; color: #333; }
-.deal-item img { max-width: 100px; height: auto; float: right; margin-left: 15px; border-radius: 4px; }
-.deal-item .whatsapp-link { display: inline-block; margin-top: 10px; padding: 10px 15px; background-color: #25D366; color: white; text-decoration: none; border-radius: 5px; }
-.deal-item::after { content: ""; display: table; clear: both; } /* Clear floats */
+
+body {
+    font-family: sans-serif; /* Using a generic sans-serif font */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0; /* Remove default body padding */
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Default text color */
+}
+
+header {
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    padding: 20px; /* Add padding */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add a subtle shadow */
+    margin-bottom: 30px; /* Space below header */
+}
+
+header h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 2em; /* Larger heading */
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+header a {
+    color: white;
+    text-decoration: underline;
+}
+
+header a:hover {
+    text-decoration: none;
+}
+
+
+main {
+    max-width: 900px; /* Max width for content */
+    margin: 20px auto; /* Center content and add vertical margin */
+    padding: 0 20px; /* Add horizontal padding on smaller screens */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #555;
+}
+
+#deals-list {
+    display: grid; /* Use CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Space between grid items */
+}
+
+.deal-item {
+    background: #fff; /* White background for each deal */
+    padding: 20px; /* Padding inside the deal box */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* More prominent shadow */
+    display: flex; /* Use flexbox for content inside deal item */
+    flex-direction: column; /* Stack elements vertically by default */
+    align-items: center; /* Center content horizontally */
+    text-align: center; /* Center text */
+}
+
+.deal-item img {
+    width: 120px; /* Fixed image width */
+    height: 120px; /* Fixed image height */
+    object-fit: cover; /* Cover the area without distorting aspect ratio */
+    border-radius: 6px; /* Slightly rounded image corners */
+    margin-bottom: 15px; /* Space below image */
+}
+
+.deal-item .deal-details {
+    flex-grow: 1; /* Allow details section to take available space */
+    width: 100%; /* Take full width within flex container */
+    text-align: center; /* Center text within details */
+}
+
+.deal-item h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.3em;
+    color: #000;
+}
+
+.deal-item p {
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+.deal-item strong {
+    font-weight: bold;
+}
+
+.initiate-pool-btn {
+    display: inline-block; /* Make button inline-block */
+    margin-top: 15px; /* Space above button */
+    padding: 12px 20px; /* Button padding */
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded button corners */
+    font-size: 1em;
+    font-weight: bold;
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Indicate it's clickable */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.initiate-pool-btn:hover {
+    background-color: #1da851; /* Darker green on hover */
+}
+
+footer {
+    background-color: #333; /* Dark gray background */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px; /* Space above footer */
+    font-size: 0.9em;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) { /* For medium screens and up */
+    .deal-item {
+        flex-direction: row; /* Arrange items in a row */
+        text-align: left; /* Align text to the left */
+        align-items: flex-start; /* Align items to the top */
+    }
+
+    .deal-item img {
+        margin-bottom: 0; /* Remove bottom margin */
+        margin-right: 20px; /* Add right margin */
+    }
+
+     .deal-item .deal-details {
+        text-align: left; /* Align text to the left */
+    }
+
+    .initiate-pool-btn {
+        display: inline-block; /* Keep as inline-block */
+    }
+}
